@@ -1,0 +1,37 @@
+Assuming unrestricted shared filesystem usage.
+None
+host: CARLOSs-MacBook-Pro.local
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job      count
+-----  -------
+all          1
+touch        1
+total        2
+
+Select jobs to execute...
+Execute 1 jobs...
+[Thu Jul 17 12:38:36 2025]
+localrule touch:
+    output: s2_shell.txt, s2_python.txt
+    jobid: 1
+    reason: Missing output files: s2_shell.txt, s2_python.txt
+    resources: tmpdir=/var/folders/q3/5zmml3z16g93bd3gdlq6bftm0000gp/T
+[Thu Jul 17 12:38:36 2025]
+Finished jobid: 1 (Rule: touch)
+1 of 2 steps (50%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Thu Jul 17 12:38:36 2025]
+localrule all:
+    input: s2_shell.txt, s2_python.txt
+    jobid: 0
+    reason: Input files updated by another job: s2_shell.txt, s2_python.txt
+    resources: tmpdir=/var/folders/q3/5zmml3z16g93bd3gdlq6bftm0000gp/T
+[Thu Jul 17 12:38:36 2025]
+Finished jobid: 0 (Rule: all)
+2 of 2 steps (100%) done
+Complete log(s): /Users/russell/Code/snakehive/russell/.snakemake/log/2025-07-17T123836.440260.snakemake.log

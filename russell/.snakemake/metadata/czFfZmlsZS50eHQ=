@@ -1,0 +1,1 @@
+{"record_format_version": 6, "code": "touch {output}", "rule": "touch", "input": [], "log": [], "params": [], "shellcmd": "touch s1_file.txt", "incomplete": false, "starttime": 1752780601.6140733, "endtime": 1752780601.621074, "job_hash": 274335445, "conda_env": null, "software_stack_hash": "d41d8cd98f00b204e9800998ecf8427e", "container_img_url": null, "input_checksums": {}}
