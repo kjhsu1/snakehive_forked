@@ -1,0 +1,8 @@
+name: mk_input
+
+channels:
+- bioconda
+- conda-forge
+
+dependencies:
+- python

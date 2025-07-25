@@ -1,0 +1,27 @@
+rule all:
+    input:
+        'results/01_output.bam'
+
+rule mk_input:
+    output:
+        'resources/01_input.sam'
+    conda:
+        'envs/mk_input.yml'
+    log:
+        stdout='workflow/logs/mk_input.stdout',
+        stderr='workflow/logs/mk_input.stderr'
+    script:
+        'scripts/mk_input.py'
+
+rule mk_output:
+    input:
+        'resources/01_input.sam'
+    output:
+        'results/01_output.bam'
+    conda:
+        'envs/mk_output.yml'
+    log:
+        stdout='workflow/logs/mk_output.out',
+        stderr='workflow/logs/mk_output.err'
+    shell:
+        'samtools view -bS {input} > {output} 2> {log.stderr}'
