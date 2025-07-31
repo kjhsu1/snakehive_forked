@@ -1,0 +1,6 @@
+trials:
+- 1
+- 2
+- 3
+
+genome: 'resources/1pct.fa'
