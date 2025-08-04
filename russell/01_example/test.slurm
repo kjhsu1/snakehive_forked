@@ -5,10 +5,9 @@
 #SBATCH --output=jobs/test.out
 #SBATCH --err=jobs/test.err
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=4GB
 #SBATCH --time=15:00
 
 module load conda
 mamba activate snakehive
 
-snakemake --profile profile --forceall
+snakemake --profile slurm --forceall
