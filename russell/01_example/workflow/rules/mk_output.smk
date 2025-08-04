@@ -6,8 +6,10 @@ rule mk_output:
         'results/01_output.bam'
     conda:
         '../envs/mk_output.yml'
+    resources:
+        mem_kb=1500
     log:
         stdout='workflow/logs/mk_output.out',
         stderr='workflow/logs/mk_output.err'
     shell:
-        'samtools view -bS {input} > {output} 2> {log.stderr}'
+        '/Users/russell/.local/share/mamba/envs/snakemake_env/bin/time -v sh -c "samtools view -bS {input} > {output}" 2> {log.stderr}'

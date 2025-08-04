@@ -1,6 +1,10 @@
 import sys
 
-with open(snakemake.log['stdout'], 'w') as out, open(snakemake.log['stderr'], 'w') as err:
+# stdout = sys.argv[1]
+# stderr = sys.argv[2]
+# out    = sys.argv[3]
+
+with open(sys.argv[1], 'w') as out, open(sys.argv[2], 'w') as err:
     sys.stdout = out
     sys.stderr = err
 
@@ -8,7 +12,7 @@ with open(snakemake.log['stdout'], 'w') as out, open(snakemake.log['stderr'], 'w
 
     print('start of script')
 
-    with open(snakemake.output[0], 'w') as out:
+    with open(sys.argv[3], 'w') as out:
         out.write('@HD\tVN:1.6\tSO:unsorted\n')
         out.write('@SQ\tSN:chr1\tLN:2048\n')
         out.write('read1\t0\tchr1\t1\t255\t8M\t*\t0\t0\tACTGACTG\t*')
