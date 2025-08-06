@@ -2,9 +2,4 @@ jobs: 1
 use-conda: true
 conda-frontend: mamba
 latency-wait: 30
-cluster: "sbatch --mem={resources.mem_kb}K --cpus-per-task={threads} --time{resources.runtime}"
-default-resources:
-  - mem_kb=10000
-  - threads=1
-  - runtime=15
 executor: slurm
