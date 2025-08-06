@@ -7,7 +7,7 @@ rule mk_output:
     conda:
         '../envs/mk_output.yml'
     resources:
-        mem_kb=1500
+        mem_kb=5000
         threads=1
     log:
         stdout='workflow/logs/mk_output.out',

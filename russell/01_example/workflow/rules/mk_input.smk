@@ -4,7 +4,7 @@ rule mk_input:
     conda:
         '../envs/mk_input.yml'
     resources: 
-        mem_kb=7500
+        mem_kb=10000
         threads=1
     log:
         stdout='workflow/logs/mk_input.stdout',
