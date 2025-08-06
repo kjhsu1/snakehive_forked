@@ -6,8 +6,6 @@ rule mk_output:
         'results/01_output.bam'
     conda:
         '../envs/mk_output.yml'
-    resources:
-        threads=1
     log:
         stdout='workflow/logs/mk_output.out',
         stderr='workflow/logs/mk_output.err'

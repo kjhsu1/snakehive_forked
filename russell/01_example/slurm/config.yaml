@@ -2,4 +2,3 @@ jobs: 1
 use-conda: true
 conda-frontend: mamba
 latency-wait: 30
-executor: slurm

@@ -3,8 +3,6 @@ rule mk_input:
         'resources/01_input.sam'
     conda:
         '../envs/mk_input.yml'
-    resources: 
-        threads=1
     log:
         stdout='workflow/logs/mk_input.stdout',
         stderr='workflow/logs/mk_input.stderr'
