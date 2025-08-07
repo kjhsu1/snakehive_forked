@@ -1,3 +1,7 @@
+rule all:
+    input:
+        'resources/01_input.sam'
+
 rule mk_input:
     output:
         'resources/01_input.sam'
