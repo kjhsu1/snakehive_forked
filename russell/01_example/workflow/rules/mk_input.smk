@@ -4,7 +4,7 @@ rule mk_input:
     conda:
         '../envs/mk_input.yml'
     log:
-        stdout='workflow/logs/mk_input.stdout',
-        stderr='workflow/logs/mk_input.stderr'
+        stdout='workflow/logs/mk_input.out',
+        stderr='workflow/logs/mk_input.err'
     shell:
-        '/Users/russell/.local/share/mamba/envs/snakemake_env/bin/time -v python3 workflow/scripts/mk_input.py {log.stdout} {log.stderr} {output} > {log.stdout} 2> {log.stderr}'
+        '/Users/russell/.local/share/mamba/envs/snakemake_env/bin/time -v python3 workflow/scripts/mk_input.py {log.stdout} {log.stderr} {output} 2> {log.stderr}'
