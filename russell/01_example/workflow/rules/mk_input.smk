@@ -1,7 +1,3 @@
-rule all:
-    input:
-        'resources/01_input.sam'
-
 rule mk_input:
     output:
         'resources/01_input.sam'
@@ -11,4 +7,4 @@ rule mk_input:
         stdout='workflow/logs/mk_input.out',
         stderr='workflow/logs/mk_input.err'
     shell:
-        '/Users/russell/.local/share/mamba/envs/snakemake_env/bin/time -v python3 workflow/scripts/mk_input.py {log.stdout} {log.stderr} {output} 2> {log.stderr}'
+        'command time -v python3 workflow/scripts/mk_input.py {log.stdout} {log.stderr} {output} 2> {log.stderr}'
