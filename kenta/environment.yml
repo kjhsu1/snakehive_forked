@@ -1,0 +1,17 @@
+name: background_project
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python
+  - snakemake
+  - hydra-core
+  - mlflow
+  - pandas
+  - numpy
+  - scipy
+  - statsmodels
+  - bowtie2
+  - samtools
+  - macs2
