@@ -12,8 +12,9 @@
 module load conda
 source $(conda info --base)/etc/profile.d/conda.sh
 conda activate snakehive
-
 snakemake --profile slurm --forceall
 
-sleep 2
-sacct -j $SLURM_JOB_ID --format=JobID,JobName,MaxRSS,MaxVMSize,State >> mem_out.txt
+while sacct -j $SLURM_JOB_ID --format=State --noheader | grep -q RUNNING; do
+    sleep 1
+done
+sacct -j $SLURM_JOB_ID --format=JobID,MaxRSS,MaxVMSize,State --noheader >> mem_out.txt
