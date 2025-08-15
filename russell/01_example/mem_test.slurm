@@ -15,5 +15,5 @@ conda activate snakehive
 
 snakemake --profile slurm --forceall
 
-sleep 3
+sleep 2
 sacct -j $SLURM_JOB_ID --format=JobID,JobName,MaxRSS,MaxVMSize,State >> mem_out.txt
