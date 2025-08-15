@@ -5,7 +5,7 @@
 #SBATCH --output=jobs/%A/mem_test_%a.out
 #SBATCH --err=jobs/%A/mem_test_%a.err
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=200000KB
+#SBATCH --mem=4GB
 #SBATCH --time=15:00
 #SBATCH --array=1-16
 
