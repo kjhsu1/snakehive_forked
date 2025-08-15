@@ -55,3 +55,25 @@ Parameters:
 
 - Put config files in its own folder outside of other folders
     - `workflow/` `results/` `configs/`
+
+## Ideas
+- test amount of resources
+- use dusk in blast
+- lots of reads to run in parallel for blast
+
+
+## things to do when i get back
+- keep trying to get snakemake to run not locally and fail when given too little memory
+
+- test memory usage for each action and create a graph
+
+- sbatch rule without memory specified but using `cluster` in profile
+
+## stashed code
+cluster: "sbatch --mem={resources.mem_kb}K --cpus-per-task={threads} --time{resources.runtime}"
+default-resources:
+  - mem_kb=10000
+  - threads=1
+  - runtime=15
+
+sacct -j 4069835 --format=JobID,JobName,MaxRSS,MaxVMSize,State

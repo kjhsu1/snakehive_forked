@@ -1,0 +1,9 @@
+name: graph
+
+channels:
+- bioconda
+- conda-forge
+
+dependencies:
+- time
+- matplotlib

@@ -1,15 +1,19 @@
 #!/bin/bash
-#SBATCH --job-name=test
+#SBATCH --job-name=mem_test
 #SBATCH --account=publicgrp
 #SBATCH --partition=low
-#SBATCH --output=jobs/test.out
-#SBATCH --err=jobs/test.err
+#SBATCH --output=jobs/%A/mem_test_%a.out
+#SBATCH --err=jobs/%A/mem_test_%a.err
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=200M
+#SBATCH --mem=200000KB
 #SBATCH --time=15:00
+#SBATCH --array=1-16
 
 module load conda
 source $(conda info --base)/etc/profile.d/conda.sh
 conda activate snakehive
 
 snakemake --profile slurm --forceall
+
+sleep 3
+sacct -j $SLURM_JOB_ID --format=JobID,JobName,MaxRSS,MaxVMSize,State >> mem_out.txt
