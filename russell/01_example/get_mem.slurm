@@ -8,7 +8,7 @@
 #SBATCH --mem=500MB
 #SBATCH --time=15:00
 
-printf "JobID\tMaxRSS" > mem_used.txt
+printf "JobID\tMaxRSS\n" > mem_used.txt
 for file in jobs/*_in; do
     jobid=${file#*/}
     jobid=${jobid%_*}
