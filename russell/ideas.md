@@ -79,3 +79,11 @@ default-resources:
 sacct -j 4069835 --format=JobID,JobName,MaxRSS,MaxVMSize,State
 jid=$(sbatch --parsable mem_test.slurm)
 sbatch --dependency=afterany:$jid log_mem.slurm
+
+jid05=$(sbatch --parsable --dependency=afterany:$jid04 test.slurm)
+jid06=$(sbatch --parsable --dependency=afterany:$jid05 test.slurm)
+jid07=$(sbatch --parsable --dependency=afterany:$jid06 test.slurm)
+jid08=$(sbatch --parsable --dependency=afterany:$jid07 test.slurm)
+jid09=$(sbatch --parsable --dependency=afterany:$jid08 test.slurm)
+jid10=$(sbatch --parsable --dependency=afterany:$jid09 test.slurm)
+jid11=$(sbatch --parsable --dependency=afterany:$jid10 get_mem.slurm)
