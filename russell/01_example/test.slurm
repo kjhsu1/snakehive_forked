@@ -5,9 +5,10 @@
 #SBATCH --output=jobs/%j_in/test.out
 #SBATCH --err=jobs/%j_in/test.err
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=200M
+#SBATCH --mem=500M
 #SBATCH --time=15:00
 
+source /etc/profile
 module load conda
 source $(conda info --base)/etc/profile.d/conda.sh
 conda activate snakehive
