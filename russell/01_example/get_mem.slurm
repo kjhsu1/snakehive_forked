@@ -8,6 +8,8 @@
 #SBATCH --mem=500MB
 #SBATCH --time=15:00
 
-for file in jobs/*_in/*; do
-    echo $file
+for file in jobs/*_in; do
+    jobid=${file#*/}
+    jobid=${jobid%_*}
+    echo $jobid
 done
