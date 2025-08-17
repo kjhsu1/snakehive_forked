@@ -8,6 +8,6 @@
 #SBATCH --mem=500MB
 #SBATCH --time=15:00
 
-for file in jobs/*_in/; do
+for file in jobs/*_in/*; do
     echo $file
 done
