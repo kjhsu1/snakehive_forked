@@ -5,7 +5,7 @@
 #SBATCH --output=jobs/%x/get_mem.out
 #SBATCH --err=jobs/%x/get_mem.err
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=500MB
+#SBATCH --mem=5MB
 #SBATCH --time=15:00
 
 printf "JobID\tMaxRSS\n" > mem_used.txt
