@@ -84,3 +84,15 @@ jobs: 1
 use-conda: true
 conda-frontend: mamba
 latency-wait: 10
+
+
+
+cluster: "sbatch --cpus-per-task={threads} \
+  --mem={cluster.mem_mb} \
+  --time={cluster.time} \
+  --partition=low \
+  --account=publicgrp \
+  --job-name={rule} \
+  --output=jobs/%j/{rule}.out \
+  --err=jobs/%j/{rule}.err"
+cluster-config: "slurm/cluster_config.yaml"
