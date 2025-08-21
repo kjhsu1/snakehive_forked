@@ -1,0 +1,11 @@
+__default__:
+  mem_mb: 1000
+  time: 15
+
+mk_input:
+  mem_mb: 2500
+  time: 15
+
+mk_output:
+  mem_mb: 2500
+  time: 15

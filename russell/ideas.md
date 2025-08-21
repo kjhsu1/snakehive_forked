@@ -79,3 +79,8 @@ default-resources:
 sacct -j 4069835 --format=JobID,JobName,MaxRSS,MaxVMSize,State
 jid=$(sbatch --parsable mem_test.slurm)
 sbatch --dependency=afterany:$jid log_mem.slurm
+
+jobs: 1
+use-conda: true
+conda-frontend: mamba
+latency-wait: 10
