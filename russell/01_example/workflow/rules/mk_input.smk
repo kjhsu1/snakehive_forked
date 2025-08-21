@@ -7,5 +7,7 @@ rule mk_input:
         stdout='workflow/logs/mk_input.out',
         stderr='workflow/logs/mk_input.err'
     threads: 1
+    resources:
+        mem_mb=1
     shell:
         'command time -v python3 workflow/scripts/mk_input.py {log.stdout} {log.stderr} {output} 2> {log.stderr}'
