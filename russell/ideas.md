@@ -79,6 +79,8 @@ default-resources:
 sacct -j 4069835 --format=JobID,JobName,MaxRSS,MaxVMSize,State
 jid=$(sbatch --parsable mem_test.slurm)
 sbatch --dependency=afterany:$jid log_mem.slurm
+sacct -j 4366926 --format=JobID,State,MaxRSS,ReqMem
+
 
 jobs: 1
 use-conda: true
@@ -96,3 +98,5 @@ cluster: "sbatch --cpus-per-task={threads} \
   --output=jobs/%j/{rule}.out \
   --err=jobs/%j/{rule}.err"
 cluster-config: "slurm/cluster_config.yaml"
+
+8-20: works rm but cant oom a single rule yet must investigate further
