@@ -1,3 +1,4 @@
+executor: slurm
 jobs: 1
 use-conda: true
 latency-wait: 16
@@ -6,3 +7,4 @@ default-resources:
   slurm_account: "publicgrp"
   mem_mb: 2500
   time_min: 15
+jobscript: "slurm/jobscript.sh"

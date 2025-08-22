@@ -81,6 +81,9 @@ jid=$(sbatch --parsable mem_test.slurm)
 sbatch --dependency=afterany:$jid log_mem.slurm
 sacct -j 4366926 --format=JobID,State,MaxRSS,ReqMem
 
+shared_storage_local_copies: True
+remote_exec: False
+
 
 jobs: 1
 use-conda: true
