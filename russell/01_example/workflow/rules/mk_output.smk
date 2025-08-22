@@ -11,6 +11,6 @@ rule mk_output:
         stderr='workflow/logs/mk_output.err'
     threads: 1
     resources:
-        mem_mb=1000
+        mem_mb=1
     shell:
         'command time -v samtools view -bS {input} > {output} 2> {log.stderr}'
