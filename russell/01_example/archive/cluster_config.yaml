@@ -1,7 +1,0 @@
-mk_input:
-  mem_mb: 2500
-  time: 15
-
-mk_output:
-  mem_mb: 2500
-  time: 15
