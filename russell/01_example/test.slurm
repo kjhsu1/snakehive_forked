@@ -13,4 +13,4 @@ module load conda
 source $(conda info --base)/etc/profile.d/conda.sh
 conda activate snakehive
 
-snakemake --profile slurm --forceall
+snakemake --profile slurm --rerun-triggers always
