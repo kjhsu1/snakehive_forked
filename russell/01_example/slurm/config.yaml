@@ -1,7 +1,7 @@
 executor: slurm
 jobs: 1
 use-conda: true
-latency-wait: 16
+latency-wait: 60
 default-resources:
   slurm_partition: "low"
   slurm_account: "publicgrp"
