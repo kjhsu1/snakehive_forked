@@ -10,3 +10,4 @@ for num in $(seq 1 $num_trials); do
         jid[$num]=$(sbatch --parsable --dependency=afterany:${jid[$((num-1))]} snakerun.slurm)
     fi
 done
+sbatch --dependency=afterany:${jid[${num_trials}]} get_mem.slurm
