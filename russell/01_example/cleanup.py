@@ -1,6 +1,6 @@
 import os
 
-os.system('rm -ri resources/*')
-os.system('rm -ri results/*')
-os.system('rm -ri workflow/logs/*')
-os.system('rm -ri jobs/*')
+os.system('rm -r resources/*')
+os.system('rm -r results/*')
+os.system('rm -r workflow/logs/*')
+os.system('rm -r jobs/*')
