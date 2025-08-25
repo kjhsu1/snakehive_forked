@@ -8,10 +8,10 @@
 #SBATCH --mem=5MB
 #SBATCH --time=15:00
 
-printf "JobID\tMaxRSS\n" > mem_used.txt
+printf "JobID\tMaxRSS\tState\n" > mem_used.txt
 for file in jobs/*_in; do
     jobid=${file#*/}
     jobid=${jobid%_*}
     echo $jobid
-    sacct -j $jobid --format=JobID,MaxRSS --noheader >> mem_used.txt
+    sacct -j $jobid --format=JobID,MaxRSS,State --noheader >> mem_used.txt
 done
