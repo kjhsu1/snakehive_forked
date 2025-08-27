@@ -9,7 +9,7 @@
 #SBATCH --time=15:00
 
 printf "JobID\tMaxRSS\tState\n" > mem_used.txt
-for file in jobs/*_in; do
+for file in jobs/*_check; do
     jobid=${file#*/}
     jobid=${jobid%_*}
     echo $jobid

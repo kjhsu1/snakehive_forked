@@ -2,7 +2,7 @@
 
 declare -a jid
 num_trials=5
-script="snakerun.slurm"
+script="test.slurm"
 
 for num in $(seq 1 $num_trials); do
    if [ $num -eq 1 ]; then
