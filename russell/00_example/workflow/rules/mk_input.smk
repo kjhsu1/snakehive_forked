@@ -10,4 +10,4 @@ rule mk_input:
     resources:
         mem_mb=256
     shell:
-        'command time -v python3 workflow/scripts/mk_input.py {log.stdout} {log.stderr} {output} 2> {log.stderr}'
+        'command time -v python3 workflow/scripts/mk_input.py {log.stdout} {log.stderr} {output} 2>> {log.stderr}'

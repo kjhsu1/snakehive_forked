@@ -1,8 +1,11 @@
 configfile: 'config/config.yaml'
 
+trials = []
+for n in range(config['trials']): trials.append(n+1)
+
 rule all:
 	input:
-		expand('results/blast_out{num}.txt', num=config['trials'])
+		expand('results/blast_out{num}.txt', num=trials)
 
 module mk_in:
 	snakefile:
