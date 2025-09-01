@@ -1,6 +1,6 @@
 rule filter:
 	input:
-		'results/ws{wsize}_c{cores}.txt'
+		'resources/ws{wsize}_c{cores}.txt'
 	output:
 		'resources/tmp/preprocess_s{wsize}c{cores}.txt'
 	log:

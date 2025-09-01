@@ -51,7 +51,7 @@ rule blast:
         query = 'resources/1pct_reads.fa',
         database = 'resources/1pct_db'
     output:
-        temp('resources/ws{wsize}_c{cores}.txt')
+        'resources/ws{wsize}_c{cores}.txt'
     conda:
         '../envs/mk_in.yaml'
     log:
