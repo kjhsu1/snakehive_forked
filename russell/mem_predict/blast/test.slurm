@@ -13,5 +13,6 @@ module load conda
 source $(conda info --base)/etc/profile.d/conda.sh
 conda activate snakehive
 
+[ -f results/blast_res_usage.pdf ] && mv results/blast_res_usage.pdf prev_tests/%j/blast_res_usage.pdf
 rm -r .snakemake/conda/*
 snakemake --profile slurm --forceall
