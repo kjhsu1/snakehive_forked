@@ -9,5 +9,13 @@ rule blast:
     log:
         stdout = 'workflow/logs/blast.out{num}',
         stderr = 'workflow/logs/blast.err{num}'
+    threads: 2
     shell:
-        'command time -v blastn -query {input.query} -db {input.database}/1pct -out {output} > {log.stdout} 2> {log.stderr}'
+        '''
+        command time -v blastn \
+        -query {input.query} \
+        -db {input.database}/1pct \
+        -out {output} \
+        -num_threads {threads} \
+        > {log.stdout} 2> {log.stderr}
+        '''

@@ -11,6 +11,8 @@ rule get_read:
     params:
         nreads = config['reads']['number'],
         lenread = config['reads']['length']
+    resources:
+        mem_mb=1000
     shell:
         '''
         command time -v python3 workflow/scripts/get_read.py \
@@ -37,4 +39,11 @@ rule mk_db:
         dbtype = 'nucl',
         in_type = 'fasta'
     shell:
-        'command time -v makeblastdb -in {input} -out {output}/1pct -dbtype {params.dbtype} -input_type {params.in_type} 2>> {log.stderr}'
+        '''
+        command time -v makeblastdb \
+        -in {input} \
+        -out {output}/1pct \
+        -dbtype {params.dbtype} \
+        -input_type {params.in_type} \
+        > {log.stdout} 2> {log.stderr}
+        '''
