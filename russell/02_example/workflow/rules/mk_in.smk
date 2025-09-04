@@ -12,7 +12,7 @@ rule get_read:
         nreads = config['reads']['number'],
         lenread = config['reads']['length']
     resources:
-        mem_mb=128
+        mem_mb=256
     shell:
         '''
         command time -v python3 workflow/scripts/get_read.py \
