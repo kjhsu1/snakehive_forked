@@ -10,6 +10,8 @@ rule blast:
         stdout = 'workflow/logs/blast.out{num}',
         stderr = 'workflow/logs/blast.err{num}'
     threads: 2
+    resources:
+        mem_mb=2500
     shell:
         '''
         command time -v blastn \
