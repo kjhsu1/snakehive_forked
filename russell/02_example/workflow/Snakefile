@@ -5,7 +5,7 @@ for n in range(config['trials']): trials.append(n+1)
 
 rule all:
 	input:
-		expand('resources/trial{num}_reads.fa', num=trials)
+		expand('resources/1pct_db', num=trials)
 
 module mk_in:
 	snakefile:

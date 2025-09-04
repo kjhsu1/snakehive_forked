@@ -13,5 +13,4 @@ module load conda
 source $(conda info --base)/etc/profile.d/conda.sh
 conda activate snakehive
 
-mkdir -p jobs/$SLURM_JOB_ID
 {exec_job}

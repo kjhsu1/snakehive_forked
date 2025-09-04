@@ -6,6 +6,6 @@ default-resources:
   slurm_partition: "low"
   slurm_account: "publicgrp"
   mem_mb: 2500
-  runtime: 10
+  runtime: 5
   threads: 1
 jobscript: "slurm/jobscript.sh"
