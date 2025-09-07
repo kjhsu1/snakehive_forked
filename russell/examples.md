@@ -5,23 +5,32 @@
 - Adhere to best practices for Snakemake
 
 ## Explanation
-- `resources` is where all files that are used in the pipeline goes. Some example of these are genomes or sequencing reads. The reason they are not incorporated with the workflow is that they can be used in other workflows. So having them outside of a workflow allows them to be easily accessed by other workflows.
+`resources` is where all files that are used in the pipeline goes. Some example of these are genomes or sequencing reads. The reason they are not incorporated with the workflow is that they can be used in other workflows. So having them outside of a workflow allows them to be easily accessed by other workflows.
 
-- `results` is where the results of the workflow go. This folder is outside of the workflow just to make it easier to access results and it is not directly used in the workflow.
+`results` is where the results of the workflow go. This folder is outside of the workflow just to make it easier to access results and it is not directly used in the workflow.
 
-- `profile` is used in the CLI Snakemake command to tell Snakemake what specifications to run with. For example, number of cores or amount of memory are different things that can be put into a config file. Snakemake looks specifically for `config.yaml` when using the `--profile`.
+`local` is used in the CLI Snakemake command as a profile to tell Snakemake what specifications to run with. For example, number of cores or amount of memory are different things that can be put into a config file. Snakemake looks specifically for `config.yaml` when using the `--profile`.
 
-- `config` is where different parameters are put that are used in multiple rules. For example, names of sample or path to reference genome.
+`config` holds `config.yaml` where different parameters are put that are used in multiple rules. For example, names of sample or path to reference genome. The name yaml file inside of `config` can be changed
 
-- `workflow` is where the all the files that get Snakemake pipeline to work go.
+`workflow` is where the all the files that get Snakemake pipeline to work go.
 
 - `Snakefile` is the file that Snakemake references to run the pipeline. Snakemake specifically looks for the snakefile to be named `Snakefile` as a default. To specify a different name, use `--snakefile` or `-s` flag followed by the snakefile name.
 
-- 'envs` is where all the different environments used in the pipeline are stored. They have their own folder for organization. All environments have the `.yml` or `.yaml` extension.
+- `envs` is where all the different environments used in the pipeline are stored. They have their own folder for organization. All environments have the `.yml` or `.yaml` extension.
 
 - `logs` is where the logs for the pipeline goes. It usually contains stdout and stderr files for the rules that are ran.
 
+- `rules` is where all the snakemake rules are stored. They end with the `.smk` extension to indicate that it is a snakemake rule. They are kept separate from the main snakefile so that it keeps the snakefile concise and easy to read.
+
 - `scripts` is where all the scripts that are run by the snakefile rules are stored. They are kept together for organization. They are either R or Python scripts.
+
+`templete.slurm` is an example script that would be submitted to hive. This templete script starts the default lines for using conda in a script. Submitting a job to the cluster will create a directory called `jobs` where all cluster output will go.
+
+`slurm` contains the profile for running snakemake on the cluster and the script that Snakemake will submit to the cluster for each rule.
+> As a reminder Snakemake looks for `config.yaml` specifically when using a profile.
+- `slurm/config.yaml` has two notable keys. `executor` specifies which job scheduler to use. `slurm` is not one of the default schedulers that comes with Snakemake, so it has to be separately installed via Conda. The other notable key is `jobscript`. This has to be added so that Snakemake knows where to find the script to submit to slurm.
+- `slurm/jobscript.sh` has two notable aspects. The first one being how all the sbatch dependencies are variables. This is so that each rule that is submitted to the cluster can run with uniquely specified resources. Another notable aspect is `{exec_job}`. This is a placeholder that Snakemake replaces later on with the command to run.
 
 # 01_example
 
@@ -35,11 +44,11 @@
 `rule all` should be the first rule in any Snakefile. It is the default rule that Snakemake looks for as its target rule.
 - Target rule is the rule that specifies the intended output for the whole Snakefile.
 
-`module` loads in a snakefile of rule/s that is from somewhere outside of this Snakefile. For best practices all snakefiles used loaded in with module must have the `.smk` extension. This will make it clear what kind of file it is just by the name. This need to contain a `config` directive if the rule that the module runs uses a script. When running shell commands, there does not need to be a `config` directive.
+`module` loads in a snakefile of rule/s that is from somewhere outside of this Snakefile. For best practices all snakefiles used loaded in with module must have the `.smk` extension. This will make it clear what kind of file it is just by the name. Modules need to contain a `config` directive if the rule that the module runs uses a script. When running shell commands, there does not need to be a `config` directive.
 
 `use rule * from <module>` tells Snakemake to use all rules from a specific module. The rule that is used can be customized and does not have to be `*`.
 
-## Explanation of Snakemake Rules
+### Explanation of Snakemake Rules
 All rules with the exception of `rule all` should contain these directives:
 - output
 - log
@@ -55,8 +64,12 @@ All rules with the exception of `rule all` should contain these directives:
 
 `script` should almost always used to run python code instead of using `run` directive. The reason for this is that it keeps the Snakefile cleaner and allows the code to be reused in other Snakefiles. Using a script also allows for easier testing without having to run the Snakefile.
 
-## Explanation of Snakemake Scripts
+### Explanation of Snakemake Scripts
+> Note: The script directive is not used in this example in order to use usr/bin/time -v on the running of the script.
+
 Snakemake can take either python or R scripts. For python scripts, variables in the rule that script is run in can be accessed with `snakemake.<directive>[0]`. This is refering to the first variable or string in a directive.
+
+Scripts can also be run in the shell directive. They would run like they would normally on the command line. In `mk_input.smk` rule, `mk_input.py` is called on and arguments are passed with sys.argv.
 
 # 02_example
 

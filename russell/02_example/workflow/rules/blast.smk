@@ -1,6 +1,6 @@
 rule blast:
     input:
-        query = 'resources/read{num}.fa',
+        query = 'resources/trial{num}_reads.fa',
         database = 'resources/1pct_db'
     output:
         'results/blast_out{num}.txt'
@@ -9,5 +9,15 @@ rule blast:
     log:
         stdout = 'workflow/logs/blast.out{num}',
         stderr = 'workflow/logs/blast.err{num}'
+    threads: 2
+    resources:
+        mem_mb=256
     shell:
-        'blastn -query {input.query} -db {input.database}/1pct -out {output} > {log.stdout} 2> {log.stderr}'
+        '''
+        command time -v blastn \
+        -query {input.query} \
+        -db {input.database}/1pct \
+        -out {output} \
+        -num_threads {threads} \
+        > {log.stdout} 2> {log.stderr}
+        '''

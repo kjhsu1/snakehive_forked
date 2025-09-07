@@ -1,0 +1,12 @@
+reads:
+  number: 1000
+  length: 500
+threads:
+- 1
+- 2
+- 3
+- 4
+ws:
+- 28
+- 11
+- 6

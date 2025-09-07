@@ -1,4 +1,10 @@
+executor: slurm
 jobs: 1
 use-conda: true
-conda-frontend: mamba
-latency-wait: 10
+latency-wait: 60
+default-resources:
+  slurm_partition: "low"
+  slurm_account: "publicgrp"
+  mem_mb: 2500
+  runtime: 15
+jobscript: "slurm/jobscript.sh"

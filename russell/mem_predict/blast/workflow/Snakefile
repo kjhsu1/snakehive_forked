@@ -1,0 +1,27 @@
+configfile: 'config/config.yaml'
+
+rule all:
+    input:
+        'results/blast_res_usage.pdf'
+
+module mk_in:
+    snakefile:
+        'rules/mk_in.smk'
+    config:
+        config
+
+module get_res:
+    snakefile:
+        'rules/get_res.smk'
+    config:
+        config
+
+module graph:
+    snakefile:
+        'rules/graph_creation.smk'
+    config:
+        config
+
+use rule * from mk_in
+use rule * from get_res
+use rule * from graph

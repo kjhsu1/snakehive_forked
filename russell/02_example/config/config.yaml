@@ -1,6 +1,5 @@
-trials:
-- 1
-- 2
-- 3
-
+trials: 10
 genome: 'resources/1pct.fa'
+reads:
+  number: 1000
+  length: 500

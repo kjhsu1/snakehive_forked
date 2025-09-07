@@ -1,0 +1,9 @@
+name: mk_in
+
+channels:
+- bioconda
+- conda-forge
+
+dependencies:
+- time
+- python

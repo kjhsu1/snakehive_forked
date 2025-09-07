@@ -2,14 +2,28 @@ rule get_read:
     input:
         config['genome']
     output:
-        'resources/read{num}.fa'
+        'resources/trial{num}_reads.fa'
     conda:
         '../envs/simple.yaml'
     log:
-        stdout = 'workflow/logs/get_read.out{num}',
-        stderr = 'workflow/logs/get_read.err{num}'
-    script:
-        '../scripts/get_read.py'
+        out = 'workflow/logs/get_read.out{num}',
+        err = 'workflow/logs/get_read.err{num}'
+    params:
+        nreads = config['reads']['number'],
+        lenread = config['reads']['length']
+    resources:
+        mem_mb=256
+    shell:
+        '''
+        command time -v python3 workflow/scripts/get_read.py \
+        --nreads {params.nreads} \
+        --lenread {params.lenread} \
+        --genome {input} \
+        --out {output} \
+        --stdout {log.out} \
+        --stderr {log.err} \
+        2>> {log.err}
+        '''
 
 rule mk_db:
     input:
@@ -24,5 +38,14 @@ rule mk_db:
     params:
         dbtype = 'nucl',
         in_type = 'fasta'
+    resources:
+        mem_mb=175
     shell:
-        'makeblastdb -in {input} -out {output}/1pct -dbtype {params.dbtype} -input_type {params.in_type}'
+        '''
+        command time -v makeblastdb \
+        -in {input} \
+        -out {output}/1pct \
+        -dbtype {params.dbtype} \
+        -input_type {params.in_type} \
+        > {log.stdout} 2> {log.stderr}
+        '''
